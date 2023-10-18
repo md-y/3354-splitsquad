@@ -1,0 +1,69 @@
+Expense Sharing Software
+	1 Friends/Groups
+		1.1 View all friends
+			1.1.2 Display expense information
+		1.2 View all groups
+			1.2.1 Display members
+			1.2.2 Display group expense information
+		1.3 Send friend requests
+			1.3.1 Search via name/email
+			1.3.2 Search via phone contacts
+		1.4 Create groups
+		1.5 Search for friends/groups by name/email/phone number
+		1.6 Remove friends
+		1.7 Delete groups
+		1.8 Friend Requests
+			1.8.1 Display all pending friend requests
+			1.8.2 Allow user to accept or deny pending friend requests
+			1.8.3 Show indicator when there are pending friend requests
+	2 Split Sharing
+		2.1 Create a Split
+		2.2 Add Friend/Group to a Split
+		2.3 Cancel Split in creation
+		2.4 Add payment category (food, rent, trips, other)
+		2.4 Add Total Expense
+		2.5 Add options for Equal Split/Percent Split/Custom Split/Mix and Match Split
+		2.6 Add periodic options for recurring payments
+		2.7 Display Unallocated Balance (Remaining)
+		2.8 Send request to friend/group
+		2.9 Allow for friend/group to verify request and notify via in-app notification
+		2.10 Save request as a an verified split request to server
+	3 Payment
+		3.1 Select friend to pay back from friend list/IOU list
+		3.2 Select expense(s) to pay back 
+		3.3 Choose amount to pay back
+		3.4 Display owed balance
+		3.5 Expense Actions
+			3.5.1 Display payment history for the expense
+			3.5.2 Display owed balance
+			3.5.3 Choose amount to pay
+			3.5.4 Choose payment method via selected payment integration
+			3.5.5 Confirm payment
+	4 Profile
+		4.1 Display account information (name, email, phone, profile picture)
+		4.2 Account Settings
+			4.2.1 Change account information
+			4.2.2 Add/Delete/Change Payment information (Credit/Debit cards, Venmo, etc.)
+			4.2.3 Change password
+			4.2.4 Change language
+			4.2.5 Light/Dark Mode
+		4.3 Notification Settings
+			4.3.1 Toggle whether to see incoming payment notifications
+			4.3.2 Toggle notification via Text/Email/Push notification
+			4.3.3 Toggle friend request notification
+			4.3.4 Toggle pending split request notification
+			4.3.5 Toggle notification supression 
+		4.4 Log user out
+	5 Expense Organization/History
+		5.1 View history of all incoming/outgoing expenses ("I owe you"/"You owe me")
+		5.2 Forgive expense
+		5.3 Manually apply favors/cash payments to outgoing expense
+		5.4 Expense Statistics
+			5.4.1 Total incoming/outgoing expenses
+			5.4.2 Total net balance (outgoing - incoming)
+			5.4.3 Graph of net balance over time
+			5.4.4 View expense statistics for each category (food, rent, trips, other)
+		5.5 Pending split requests
+			5.5.1 Display all pending split requests
+			5.5.2 Allow user to accept or deny pending split requests
+			5.5.3 Show indicator when there are pending split requests

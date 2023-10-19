@@ -1,0 +1,26 @@
+@startuml login
+!theme cerulean-outline
+box "Log In"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "sess:Session Manager" as sess
+participant "auth:Authenticator" as auth
+end box
+activate user
+user -> disp ++ : username
+user -> disp : password
+disp -> sess ++ : sanitize(username)
+disp -> sess : sanitize(password)
+sess -> auth --++ : validate(username, password)
+alt success
+  auth --> sess ++ : ACCEPTED
+  sess -> sess : set_session(username)
+  sess --> disp -- : ACCEPTED
+  disp --> user : redirect(HOME_SCREEN)
+else failure
+  auth --> sess --++ : REJECTED
+  sess --> disp -- : REJECTED
+  disp --> user : "Wrong username or password"
+end
+deactivate user
+@enduml

@@ -1,0 +1,30 @@
+@startuml change_password
+!theme cerulean-outline
+box "Change Password"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "sess:Session Manager" as sess
+participant "auth:Authenticator" as auth
+end box
+activate user
+user -> disp ++: CHANGE_PASSWORD
+disp -> sess ++: request(CHANGE_PASSWORD)
+disp --> user: "Enter old and new password"
+user -> disp: old_password
+user -> disp: new_password
+disp -> sess: sanitize(old_password)
+disp -> sess: sanitize(new_password)
+sess -> auth --++: verify(old_password)
+alt success
+  auth --> sess ++ : ACCEPTED
+  sess -> auth : new_password
+  auth -> auth : reset(new_password)
+  sess --> disp -- : ACCEPTED
+  disp --> user : success_message
+else failure
+  auth --> sess --++ : REJECTED
+   sess --> disp -- : REJECTED
+  disp --> user : error_message
+end
+deactivate user
+@enduml

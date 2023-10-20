@@ -14,6 +14,5 @@ sess --> msg -- : session_ID
 msg -> msg : getInbox(session_ID)
 msg --> disp -- : inbox_msg_list
 disp --> user -- : display(inbox_msg_list)
-end
 deactivate user
 @enduml

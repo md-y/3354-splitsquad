@@ -21,3 +21,27 @@
 
 # Direct Payment
 ![](https://tinyurl.com/ywwwrzf9)
+
+# Forgive Expense
+![](https://tinyurl.com/4m4naxs9)
+
+# Notify Split Member
+![](https://tinyurl.com/msaf75mk)
+
+# Pay Split Request
+![](https://tinyurl.com/33baucvw)
+
+# Verify Balance
+![](https://tinyurl.com/2wcwnu5j)
+
+# Verify Split Request
+![](https://tinyurl.com/4pr4tktj)
+
+# View Accepted Split Request
+![](https://tinyurl.com/3ej3kvxm)
+
+# View Expense Statistics
+![](https://tinyurl.com/mvs7vvvb)
+
+# View Split Request
+![](https://tinyurl.com/2k938bnz)

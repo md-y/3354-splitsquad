@@ -1,0 +1,7 @@
+The agile process model is best suited for the development of our expense sharing app. 
+Agile methodologies, such as Scrum, offer the flexibility for us to create new requirements/functionalities and make changes to the application per user feedback. 
+Any development ideas can be addressed in a scrum meeting, and the development team would focus and work on each topic on a daily basis. 
+In the first scrum meeting, the team will come together with the customers and lay out the basic requirements and functionalities for the app (can be seen in project_scope and functional/non-functional requirements specified in other sections of this deliverable) and begin the development process. 
+For every meeting afterwards, the team will attempt to implement each functionality and requirement and have the customers review them. 
+Each feature should be kept simple and adaptable for the development process to take after the agile process model. 
+The increment phase and development process will end when customers are mostly satisfied with the final product (every requested feature is implemented with little to no issues).

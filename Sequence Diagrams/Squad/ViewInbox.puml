@@ -1,0 +1,19 @@
+@startuml
+!theme cerulean-outline
+box "View Inbox"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "msg:Message Manager" as msg
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : OPEN_INBOX
+disp -> msg ++ : retrieve_inbox()
+msg -> sess ++ : getSessionID()
+sess --> msg -- : session_ID
+msg -> msg : getInbox(session_ID)
+msg --> disp -- : inbox_msg_list
+disp --> user -- : display(inbox_msg_list)
+end
+deactivate user
+@enduml

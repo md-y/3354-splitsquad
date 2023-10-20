@@ -1,0 +1,18 @@
+@startuml
+!theme cerulean-outline
+box "View Friend Expense"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "exp:Expense Manager" as exp
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : CHOOSE_FRIEND
+user -> disp : friend_profile
+disp -> exp ++ : retrieve_expense(friend_profile)
+exp -> sess ++ : getSessionID(friend_profile)
+sess --> exp : friend_session_ID
+exp -> exp : getExpense(friend_session_ID)
+exp --> disp -- : friend_expense
+disp --> user -- : display(friend_expense)
+@enduml

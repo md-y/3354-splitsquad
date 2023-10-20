@@ -1,0 +1,35 @@
+@startuml
+!theme cerulean-outline
+box "Send Friend Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "msg:Message Manager" as msg
+participant "sess:Session Manager" as sess
+participant "notif:Notification Manager" as notif
+actor "Friend User" as friend
+end box
+activate user
+user -> disp ++ : SEND_REQUEST
+user -> disp : friend_info
+note right of user
+  Name, email, 
+  or phone number
+end note
+disp -> msg ++ : invite(friend_info)
+msg -> sess ++ : getSessionID()
+sess --> msg : session_ID
+msg -> sess : getSessionID(friend_info)
+sess --> msg -- : friend_session_ID
+alt friend_session_ID = NULL
+  msg -> notif ++ : friendinvite(session_ID,friend_session_ID)
+  notif --> msg : addMsg(FRIEND_INVITE,session_ID,friend_session_ID)
+  notif -> friend --: notify(FRIEND_INVITE,session_ID)
+  msg --> disp -- : SUCCESS
+  disp --> user -- : "Invite sent"
+else friend_session_ID != NULL
+  activate msg
+  msg --> disp --++: FAILURE
+  disp --> user -- : "Name does not exist"
+end
+deactivate user
+@enduml

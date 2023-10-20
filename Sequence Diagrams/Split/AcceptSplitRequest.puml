@@ -1,0 +1,29 @@
+@startuml
+!theme cerulean-outline
+box "Accept Split Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+participant "sess:Session Manager" as sess
+actor "Split Members" as splitMembers
+end box
+activate user
+user -> disp ++ : ACCEPT_SPLIT_REQUEST
+user -> disp : split_request
+disp -> msg ++ : accept(split_request)
+msg -> sess ++ : getSessionID()
+sess --> msg : session_ID
+msg -> splt --++ : accept(session_ID, split_request)
+splt -> splt : getSplitModel(split_request)
+splt -> splt : add(session_ID, split_model)
+splt -> splt : getSplitMember(split_model)
+splt -> msg ++ : split_member_ID
+splt -> msg : SPLIT_CREATE
+ref over notif, msg, splitMembers : Notify Split Member
+msg --> splt -- : SUCCESS
+splt --> disp -- : SUCCESS
+disp --> user -- : "Split accepted"
+deactivate user
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+!theme cerulean-outline
+box "Notify Split Member"
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+actor "Split Members" as splitMembers
+end box
+-> msg++ : split_member_ID
+-> msg: MSG_TYPE
+msg -> notif : notify(MSG_TYPE, split_member_ID)
+notif -> splitMembers --: notify(MSG_TYPE)
+notif --> msg ++ : addMsg(MSG_TYPE, split_member_ID)
+@enduml

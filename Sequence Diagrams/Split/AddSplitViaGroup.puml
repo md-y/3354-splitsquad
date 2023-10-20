@@ -1,0 +1,38 @@
+@startuml
+!theme cerulean-outline
+box "Add People to Split Request via Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+actor "Split Members" as splitMembers
+actor "New Split Member" as newSpMem
+end box
+activate user
+--> splt ++ : split_model
+ref over user, disp, gro, sess : Choose Joined Group
+user -> disp ++: filtered_joined_group
+disp -> splt ++: addGroup(split_model, filtered_joined_group)
+splt -> gro ++: getGroupMember(filtered_joined_group)
+gro --> splt : group_member_ID
+splt -> splt : add(group_member_ID, split_model)
+splt -> splt : getSplitMember(split_model)
+par split_member_ID
+splt -> msg ++ : split_member_ID
+splt -> msg : ADD_TO_SPLIT
+ref over notif, msg, splitMembers : Notify Split Member
+deactivate msg
+else group_member_ID 
+splt -> msg ++ : group_member_ID
+splt -> msg : ADD_TO_SPLIT
+ref over notif, msg, newSpMem : Notify Split Member
+deactivate msg
+end
+msg --> splt -- : SUCCESS
+splt --> disp -- : SUCCESS
+disp --> user -- : "[Name] added to split"
+deactivate user
+@enduml

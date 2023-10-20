@@ -1,0 +1,14 @@
+@startuml
+!theme cerulean-outline
+box "Verify Balance"
+participant "pay:Payment Manager" as pay
+participant "sess:Session Manager" as sess
+actor "Payment System" as paySys
+end box
+--> pay ++: monetary_amount
+pay -> sess ++ : getSessionID()
+sess --> pay --: sessionID
+pay -> pay : getPaymenSystem(sessionID)
+pay -> paySys ++: verifyBalance(monetary_amount)
+paySys --> pay --: verification_status
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+!theme cerulean-outline
+box "Pay Split Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "pay:Payment Manager" as pay
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+actor "Split Members" as splitMembers
+actor "Payment System" as paySys
+end box
+activate user
+user -> disp ++ : split_request
+user -> disp : monetary_amount
+disp -> splt ++: pay(split_request, monetary_amount)
+splt -> pay ++ : monetary_amount 
+ref over pay, paySys : Verify Balance
+pay --> splt -- : verification_status
+opt verification_status == SUFFICIENT
+  splt -> pay ++: reduce(sessionID, monetary_amount)
+  pay -> paySys ++ : process(monetary_amount)
+  paySys --> pay -- : process_status
+  pay --> splt -- : process_status
+  opt process_status == SUCCESS
+    splt -> splt : getSplitModel(split_request)
+    splt -> splt : getSplitMember(split_model)
+    par split_member_ID
+      splt -> msg ++ : split_member_ID
+      splt -> msg : SPLIT_PAYED
+      ref over notif, msg, splitMembers : Notify Split Member
+      deactivate msg
+    else sessionID 
+      splt -> msg ++ : sessionID
+      splt -> msg : PAY_SPLIT
+      ref over notif, msg, user : Notify Split Member
+      deactivate msg
+    end
+  end
+end
+deactivate user
+@enduml

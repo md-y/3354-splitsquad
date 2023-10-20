@@ -1,0 +1,15 @@
+@startuml
+!theme cerulean-outline
+box "View Friend Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "msg:Message Manager" as msg
+participant "sess:Session Manager" as sess
+end box
+activate user
+|||
+ref over user, sess : View Inbox 
+user -> disp ++ : VIEW_FRIEND_REQUEST
+disp -> disp : filter(inbox_msg_list, FRIEND_REQUEST)
+disp --> user : display(split_requests)
+@enduml

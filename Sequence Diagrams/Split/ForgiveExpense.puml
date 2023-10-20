@@ -1,0 +1,38 @@
+@startuml
+!theme cerulean-outline
+box "Forgive Expense"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "sess:Session Manager" as sess
+participant "prof:Profile Manager" as prof
+participant "frie:Friend Manager" as frie
+participant "pay:Payment Manager" as pay
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+actor "Friend" as friend
+end box
+activate user
+user -> disp ++ : FORGIVE_EXPENSE
+disp --> user : "Choose Friend"
+ref over user, frie : Search Friend
+ref over user, pay : View Friend Expense
+user -> disp : friend_model
+user -> disp : friend_expense
+disp -> frie ++: forgive(friend_model, friend_expense)
+frie -> pay ++: forgive(friend_model, friend_expense)
+pay -> sess ++ : getSessionID()
+sess --> sess -- : sessionID
+pay -> sess ++ : getSessionID(friend_model)
+sess --> sess -- : friend_session_ID
+pay -> pay : getModel(friend_expense)
+pay -> pay : remove(sessionID, friend_session_ID, expense_model)
+pay --> frie --: SUCCESS
+frie -> sess ++ : getSessionID(friend_model)
+sess --> frie --: friend_session_ID
+frie --> notif ++ : forgive(session_ID,friend_session_ID, friend_expense)
+notif --> msg : addMsg(Forgive,session_ID,friend_session_ID, friend_expense)
+notif -> friend --: notify(DIRECT_PAY,session_ID, friend_expense)
+frie --> disp -- : SUCCESS
+disp --> user -- : "[Name] forgived"
+deactivate user
+@enduml

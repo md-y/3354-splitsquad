@@ -1,0 +1,30 @@
+@startuml
+!theme cerulean-outline
+box "Verify Split Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "notif:Notification Manager" as notif
+participant "sess:Session Manager" as sess
+participant "prof:Profile Manager" as prof
+end box
+activate user
+activate disp
+disp -> notif ++ : SplitRequest2FA()
+notif -> sess ++ : getSessionID()
+sess --> notif -- : sessionID 
+notif -> prof : getPhoneNumber(sessionID)
+prof --> notif : phoneNumber 
+notif -> user : 2FA(phoneNumber)
+notif --> disp : SUCCESS
+disp --> user : "Enter Code"
+user -> disp : 2FA_code
+disp -> notif : verify(2FA_code)
+alt SUCCESS
+  notif --> disp : SUCCESS
+  disp --> user : "Match"
+else FAILURE
+  notif --> disp : FAILURE
+  disp --> user : "Mismatch"
+end
+deactivate user
+@enduml

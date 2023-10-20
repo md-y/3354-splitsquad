@@ -1,0 +1,27 @@
+@startuml
+!theme cerulean-outline
+box "View Expense Statistics"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "exp:Expense Manager" as exp
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : VIEW_EXPENSE_STATISTICS
+disp -> exp ++ : retrieve_expense()
+exp -> sess ++ : getSessionID()
+sess --> exp -- : sessionID 
+exp -> exp : getExpense(sessionID)
+exp --> disp -- : expense_model
+disp --> user -- : display(expense_model)
+user -> disp ++ : EXPENSE_FILTER
+note right of user
+  Incoming Expense
+  Outgoing Expense
+  Total Expense 
+  Balance Graphs
+end note
+disp -> disp : filter(expense_model, EXPENSE_FILTER)
+disp --> user : display(filtered_expense_model)
+deactivate user
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+!theme cerulean-outline
+box "Change Split Type"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : CHANGE_SPLIT_TYPE_REQUEST
+user -> disp : split_model
+disp --> user : "One-time or Recurring?"
+user -> disp : split_type_info
+note right of user
+  one-time or 
+  recurring
+end note
+alt split_type_info == ONE_TIME
+  disp -> splt : changeSplitType(split_model, ONE_TIME)
+  splt -> sess ++ : getSessionID()
+  sess --> splt -- : sessionID
+  splt -> splt : changeType(sessionID, split_model, ONE_TIME)
+  splt --> disp : SUCCESS
+  disp --> user : "Selected one-time split"
+else split_type_info == RECURRING
+  disp --> user : "Interval?"
+  user -> disp : recurring_split_info
+  note right of user
+    weekly,
+    bi-weekly,
+    monthly,
+    yearly,
+    or custom
+    time interval
+  end note
+  disp -> splt : changeSplitType(split_model, recurring_split_info)
+  splt -> sess ++ : getSessionID()
+  sess --> splt -- : sessionID
+  splt -> splt : changeType(sessionID, split_model, recurring_split_info)
+  splt --> disp : SUCCESS
+  disp --> user : "Selected recurring split"
+end
+deactivate user
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+!theme cerulean-outline
+box "Add People to Split Request via Friend"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+participant "prof:Profile Manager" as prof
+participant "frie:Friend Manager" as frie
+actor "Split Members" as splitMembers
+actor "New Split Member" as newSpMem
+end box
+activate user
+--> splt ++ : split_model
+ref over user, disp, sess, prof, frie: Search Friend
+user -> disp ++: friend_model
+disp -> splt : addMember(split_model, friend_model)
+splt -> sess ++: getSessionID(friend_model)
+sess --> splt -- : friend_session_ID
+splt -> splt : add(friend_session_ID, split_model)
+splt -> splt : getSplitMember(split_model)
+par split_member_ID
+splt -> msg ++ : split_member_ID
+splt -> msg : ADD_TO_SPLIT
+ref over notif, msg, splitMembers : Notify Split Member
+deactivate msg
+else friend_session_ID 
+splt -> msg ++ : friend_session_ID
+splt -> msg : ADD_TO_SPLIT
+ref over notif, msg, newSpMem : Notify Split Member
+deactivate msg
+end
+msg --> splt -- : SUCCESS
+splt --> disp -- : SUCCESS
+disp --> user -- : "[Name] added to split"
+deactivate user
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!theme cerulean-outline
+box "View Accepted Split Request"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "splt:Split Manager" as splt
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : VIEW_SPLIT
+disp -> splt ++ : request_split()
+splt -> sess ++ : getSessionID()
+sess --> splt -- : sessionID 
+splt -> splt : getAcceptedSplit(sessionID)
+splt --> disp --: accepted_split_list
+disp --> user --: display(accepted_split_list)
+deactivate user
+@enduml

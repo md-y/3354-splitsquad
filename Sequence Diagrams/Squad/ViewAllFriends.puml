@@ -5,13 +5,16 @@ actor "User" as user
 participant "disp:Display Manager" as disp
 participant "sess:Session Manager" as sess
 participant "prof:Profile Manager" as prof
+participant "frie:Friend Manager" as frie
 end box
 activate user
 user -> disp ++ : VIEW_ALL_FRIEND
-disp -> prof ++ : getProfiles()
+disp -> prof ++ : requestFriendProfile()
 prof -> sess ++ : getSessionID()
 sess --> prof -- : session_ID
-prof -> prof : getAllFriendProfile(session_ID)
-prof --> disp -- : friend_profile_list
+prof -> frie ++ : requestFriendID(session_ID)
+frie --> prof -- : friend_ID_list
+prof -> prof : getProfiles(friend_ID_list)
+prof -> disp -- : friend_profile_list
 disp --> user -- : display(friend_profile_list)
 @enduml

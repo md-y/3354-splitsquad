@@ -9,7 +9,7 @@ end box
 activate user
 user -> disp ++ : CHOOSE_FRIEND
 user -> disp : friend_profile
-disp -> exp ++ : retrieve_expense(friend_profile)
+disp -> exp ++ : retrieveExpense(friend_profile)
 exp -> sess ++ : getSessionID(friend_profile)
 sess --> exp : friend_session_ID
 exp -> exp : getExpense(friend_session_ID)

@@ -1,0 +1,17 @@
+@startuml
+!theme cerulean-outline
+box "Choose Joined Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+end box
+activate user
+|||
+ref over user, disp, gro, sess : View All Joined Group
+user -> disp ++ : CHOOSE_GROUP
+user -> disp : group_name
+disp -> disp : filter(joined_group_list, group_name)
+disp -> user : filtered_joined_group
+deactivate user
+@enduml

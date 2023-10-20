@@ -1,0 +1,48 @@
+@startuml
+!theme cerulean-outline
+box "Add Friend to Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+participant "prof:Profile Manager" as prof
+participant "frie:Friend Manager" as frie
+actor "Group Members" as member
+actor "New Group Member" as newMember
+end box
+activate user
+|||
+ref over user, disp, gro, sess : Choose Joined Group
+user -> disp ++ : ADD_FRIEND_TO_GROUP
+user -> disp : filtered_joined_group
+ref over user, disp, sess, prof, frie: Search Friend
+user -> disp : friend_model
+disp -> gro ++ : addMember(filtered_joined_group, friend_model)
+gro -> sess : getSessionID(friend_model)
+sess --> gro -- : friend_session_ID
+gro -> gro : add(friend_session_ID, filtered_joined_group)
+gro -> gro : getGroupMember(filtered_joined_group)
+gro -> msg ++ : memberAdded(group_member_ID, friend_session_ID)
+par group_member_ID
+msg -> notif ++ : memberAdded(group_member_ID, friend_session_ID)
+notif --> msg : addMsg(MEMBER_ADD,group_member_ID, friend_session_ID)
+activate member
+notif -> member --: notify(MEMBER_ADD, friend_session_ID)
+else friend_session_ID
+deactivate member
+msg -> notif ++ : memberAdded(filtered_joined_group, friend_session_ID)
+notif --> msg : addMsg(MEMBER_ADD,friend_session_ID, filtered_joined_group)
+activate newMember
+notif -> newMember --: notify(MEMBER_ADD, filtered_joined_group)
+end
+deactivate newMember
+activate msg
+activate gro
+activate disp
+msg --> gro -- : SUCCESS
+gro --> disp -- : SUCCESS
+disp --> user -- : "[Name] added to group"
+deactivate user
+@enduml

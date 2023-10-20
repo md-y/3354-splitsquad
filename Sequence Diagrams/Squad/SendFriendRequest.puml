@@ -20,13 +20,13 @@ msg -> sess ++ : getSessionID()
 sess --> msg : session_ID
 msg -> sess : getSessionID(friend_info)
 sess --> msg -- : friend_session_ID
-alt friend_session_ID = NULL
+alt friend_session_ID != NULL
   msg -> notif ++ : friendinvite(session_ID,friend_session_ID)
   notif --> msg : addMsg(FRIEND_INVITE,session_ID,friend_session_ID)
   notif -> friend --: notify(FRIEND_INVITE,session_ID)
   msg --> disp -- : SUCCESS
   disp --> user -- : "Invite sent"
-else friend_session_ID != NULL
+else friend_session_ID == NULL
   activate msg
   msg --> disp --++: FAILURE
   disp --> user -- : "Name does not exist"

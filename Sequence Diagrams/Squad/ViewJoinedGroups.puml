@@ -1,0 +1,18 @@
+@startuml
+!theme cerulean-outline
+box "View All Joined Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+end box
+activate user
+user -> disp ++ : VIEW_JOINED_GROUP
+disp -> gro ++ : request_joined_group()
+gro -> sess ++ : getSessionID()
+sess --> gro -- : session_ID
+gro -> gro : get_joined_group(session_ID)
+gro --> disp -- : joined_group_list
+disp --> user -- : display(joined_group_list) 
+deactivate user
+@enduml

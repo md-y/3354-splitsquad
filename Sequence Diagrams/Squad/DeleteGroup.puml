@@ -1,0 +1,39 @@
+@startuml
+!theme cerulean-outline
+box "Delete Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+actor "Group Members" as member
+end box
+activate user
+|||
+ref over user, disp, gro, sess : Choose Joined Group
+user -> disp ++ : DELETE_GROUP
+user -> disp : filtered_joined_group
+disp -> gro ++ : deleteGroup(filtered_joined_group)
+gro -> sess ++ : getSessionID()
+sess --> gro -- : session_ID
+gro -> gro : checkPermission(session_ID, filtered_joined_group)
+alt filtered_joined_group.owner == session_ID
+  gro -> gro : getGroupMember(filtered_joined_group)
+  gro -> msg ++ : groupDeleted(filtered_joined_group, group_member_ID)
+  msg -> notif ++ : groupDeleted(filtered_joined_group, group_member_ID)
+  notif --> msg : addMsg(GROUP_DELETED, group_member_ID, filtered_joined_group)
+  deactivate msg
+  activate member
+  notif -> member --: notify(GROUP_DELETED, filtered_joined_group)
+  deactivate member
+  gro -> gro : remove(session_ID, filtered_joined_group)
+  gro -> gro : remove(group_member_ID, filtered_joined_group)
+  gro -> disp : SUCCESS
+  disp -> user : "Group deleted"
+else filtered_joined_group.owner != session_ID
+  gro --> disp : FAILURE
+  disp --> user : "Not a group owner"
+end
+deactivate user
+@enduml

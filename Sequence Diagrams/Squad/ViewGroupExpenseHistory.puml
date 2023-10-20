@@ -1,0 +1,23 @@
+@startuml
+!theme cerulean-outline
+box "View Group Expense History"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+participant "exp:Expense Manager" as exp
+end box
+activate user
+|||
+ref over user, disp, gro, sess : Choose Joined Group
+user -> disp : VIEW_EXPENSE_HISTORY
+disp -> gro ++ : request_expense_history(group_name)
+gro -> sess ++ : getSessionID()
+sess --> gro -- : session_ID
+gro -> gro : getGroupMember(session_ID, group_name)
+gro -> exp ++ : getExpense(group_member_ID_list)
+exp --> gro -- : group_member_expense_list
+gro --> disp -- : group_member_expense_list
+disp --> user -- : display(group_member_expense_list)
+deactivate user
+@enduml

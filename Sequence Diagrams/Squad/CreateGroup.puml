@@ -1,0 +1,26 @@
+@startuml
+!theme cerulean-outline
+box "Create New Group"
+actor "User" as user
+participant "disp:Display Manager" as disp
+participant "gro:Group Manager" as gro
+participant "sess:Session Manager" as sess
+participant "msg:Message Manager" as msg
+participant "notif:Notification Manager" as notif
+participant "prof:Profile Manager" as prof
+participant "frie:Friend Manager" as frie
+actor "Group Members" as member
+actor "New Group Member" as newMember
+end box
+activate user
+user -> disp ++ : CREATE_NEW_GROUP
+user -> disp : group_name
+disp -> gro ++ : createGroup(group_name)
+gro -> sess : getSessionID()
+sess --> gro -- : session_ID
+gro -> gro : addGroup(group_name, session_ID)
+gro --> disp --: SUCCESS
+disp --> user -- : "Please add group member"
+ref over user, newMember : Add Friend to Group
+deactivate user
+@enduml

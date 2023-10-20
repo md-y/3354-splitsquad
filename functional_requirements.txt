@@ -1,0 +1,13 @@
+The user shall be able to create a split request among one or more other users with fields to input total expense, to split total expense in the split request equally, by percentage, by custom amount, or by a mix of percentages and custom amount with options to add periodicity (weekly/monthly) or categories (food, rent, trips, other) to the split request. 
+
+The user shall be able to see and accept or deny a pending split request and, if accepted, pay the expense back partially or in full via a selected payment integration such as debit card, credit card, or a supported Peer-to-Peer payment system such as Paypal or Venmo. 
+
+The user shall be able to view expense organization such as history of all incoming/outgoing expenses (“I owe you”/”You owe me”) and current unpaid incoming/outgoing expenses or statistics such as total incoming/outgoing expenses, net balance of expenses, graph of net balance over time, and expenses by category (food, rent, trips, other). 
+
+The user shall be able to forgive or partially forgive an outgoing expense with an optional note for adding a reason such as cash payment or favor. 
+
+The user shall be able to add/view/search for/remove friends and create/view/search for/delete groups and see all related expense information for the friend or group. 
+
+The user shall be able to view and change account settings such as name, email, phone, profile picture, payment information, password, language, dark/light view mode and notification settings such as toggles for text/email/mobile push notifications, friend requests notifications, pending split request notifications, and incoming payment notifications. 
+
+The system shall store all user information, friend/group information, expense records in server database(s) belonging to the app.

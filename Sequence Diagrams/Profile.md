@@ -7,7 +7,7 @@
 # Change Display
 ![](https://tinyurl.com/msaeu2u8)
 
-# Change Language
+# Change Languages
 ![](https://tinyurl.com/ywk9bx4d)
 
 # Change Notification

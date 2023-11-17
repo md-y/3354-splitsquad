@@ -2,8 +2,8 @@
 !theme cerulean-outline
 box "Change Language"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "lang:Language Manager" as lang
+participant "disp:UI View" as disp
+participant "lang:Language Controller" as lang
 end box
 activate user
 user -> disp ++ : CHANGE_LANGUAGE

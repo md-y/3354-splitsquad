@@ -2,12 +2,12 @@
 !theme cerulean-outline
 box "Add People to Split Request via Group"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "splt:Split Manager" as splt
-participant "gro:Group Manager" as gro
-participant "sess:Session Manager" as sess
-participant "msg:Message Manager" as msg
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "splt:Split Controller" as splt
+participant "gro:Group Controller" as gro
+participant "sess:Session Database" as sess
+participant "msg:Message Controller" as msg
+participant "notif:Notification Hub" as notif
 actor "Split Members" as splitMembers
 actor "New Split Member" as newSpMem
 end box

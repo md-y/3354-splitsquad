@@ -2,10 +2,10 @@
 !theme cerulean-outline
 box "Verify Split Request"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "notif:Notification Manager" as notif
-participant "sess:Session Manager" as sess
-participant "prof:Profile Manager" as prof
+participant "disp:UI View" as disp
+participant "notif:Notification Hub" as notif
+participant "sess:Session Database" as sess
+participant "prof:Profile Database" as prof
 end box
 activate user
 activate disp

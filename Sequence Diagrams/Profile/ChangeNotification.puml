@@ -2,8 +2,8 @@
 !theme cerulean-outline
 box "Change Notification"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "notif:Notification Hub" as notif
 end box
 activate user
 user -> disp ++ : CHANGE_NOTIF

@@ -2,11 +2,11 @@
 !theme cerulean-outline
 box "Delete Group"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "gro:Group Manager" as gro
-participant "sess:Session Manager" as sess
-participant "msg:Message Manager" as msg
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "gro:Group Controller" as gro
+participant "sess:Session Database" as sess
+participant "msg:Message Controller" as msg
+participant "notif:Notification Hub" as notif
 actor "Group Members" as member
 end box
 activate user

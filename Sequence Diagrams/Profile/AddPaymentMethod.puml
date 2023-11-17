@@ -2,8 +2,8 @@
 !theme cerulean-outline
 box "Add Payment Method"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "pay:Payment Manager" as pay
+participant "disp:UI View" as disp
+participant "pay:Payment Controller" as pay
 actor "Payment System" as paySys
 end box
 activate user

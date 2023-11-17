@@ -2,10 +2,10 @@
 !theme cerulean-outline
 box "View Group Expense History"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "gro:Group Manager" as gro
-participant "sess:Session Manager" as sess
-participant "exp:Expense Manager" as exp
+participant "disp:UI View" as disp
+participant "gro:Group Controller" as gro
+participant "sess:Session Database" as sess
+participant "exp:Expense Controller" as exp
 end box
 activate user
 |||

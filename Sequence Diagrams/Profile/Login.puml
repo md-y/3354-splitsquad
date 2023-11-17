@@ -2,8 +2,8 @@
 !theme cerulean-outline
 box "Log In"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "sess:Session Manager" as sess
+participant "disp:UI View" as disp
+participant "sess:Session Database" as sess
 participant "auth:Authenticator" as auth
 end box
 activate user

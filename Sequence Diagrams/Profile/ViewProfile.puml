@@ -2,9 +2,9 @@
 !theme cerulean-outline
 box "View Personal Profile"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "prof:Profile Manager" as prof
-participant "sess:Session Manager" as sess
+participant "disp:UI View" as disp
+participant "prof:Profile Database" as prof
+participant "sess:Session Database" as sess
 end box
 activate user
 user -> disp ++ : ENTER_PROFILE

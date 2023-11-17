@@ -2,7 +2,7 @@
 !theme cerulean-outline
 box "Change Display"
 actor "User" as user
-participant "disp:Display Manager" as disp
+participant "disp:UI View" as disp
 end box
 activate user
 user -> disp ++ : CHANGE_DISPLAY

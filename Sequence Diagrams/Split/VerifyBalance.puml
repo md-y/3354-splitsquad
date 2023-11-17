@@ -1,8 +1,8 @@
 @startuml
 !theme cerulean-outline
 box "Verify Balance"
-participant "pay:Payment Manager" as pay
-participant "sess:Session Manager" as sess
+participant "pay:Payment Controller" as pay
+participant "sess:Session Database" as sess
 actor "Payment System" as paySys
 end box
 --> pay ++: monetary_amount

@@ -2,13 +2,13 @@
 !theme cerulean-outline
 box "Forgive Expense"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "sess:Session Manager" as sess
-participant "prof:Profile Manager" as prof
-participant "frie:Friend Manager" as frie
-participant "pay:Payment Manager" as pay
-participant "msg:Message Manager" as msg
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "sess:Session Database" as sess
+participant "prof:Profile Database" as prof
+participant "frie:Friend Controller" as frie
+participant "pay:Payment Controller" as pay
+participant "msg:Message Controller" as msg
+participant "notif:Notification Hub" as notif
 actor "Friend" as friend
 end box
 activate user

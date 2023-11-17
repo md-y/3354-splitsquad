@@ -2,12 +2,12 @@
 !theme cerulean-outline
 box "Pay Split Request"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "splt:Split Manager" as splt
-participant "pay:Payment Manager" as pay
-participant "sess:Session Manager" as sess
-participant "msg:Message Manager" as msg
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "splt:Split Controller" as splt
+participant "pay:Payment Controller" as pay
+participant "sess:Session Database" as sess
+participant "msg:Message Controller" as msg
+participant "notif:Notification Hub" as notif
 actor "Split Members" as splitMembers
 actor "Payment System" as paySys
 end box

@@ -2,9 +2,9 @@
 !theme cerulean-outline
 box "Cancel Split Creation"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "splt:Split Manager" as splt
-participant "sess:Session Manager" as sess
+participant "disp:UI View" as disp
+participant "splt:Split Controller" as splt
+participant "sess:Session Database" as sess
 end box
 activate user
 user -> disp ++ : CANCEL_SPLIT_REQUEST

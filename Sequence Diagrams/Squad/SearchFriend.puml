@@ -2,10 +2,10 @@
 !theme cerulean-outline
 box "Search Friend"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "sess:Session Manager" as sess
-participant "prof:Profile Manager" as prof
-participant "frie:Friend Manager" as frie
+participant "disp:UI View" as disp
+participant "sess:Session Database" as sess
+participant "prof:Profile Database" as prof
+participant "frie:Friend Controller" as frie
 end box
 |||
 activate user

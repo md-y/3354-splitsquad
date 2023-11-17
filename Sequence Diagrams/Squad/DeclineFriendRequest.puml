@@ -2,10 +2,10 @@
 !theme cerulean-outline
 box "Decline Friend Request"
 actor "User" as user
-participant "disp:Display Manager" as disp
-participant "msg:Message Manager" as msg
-participant "sess:Session Manager" as sess
-participant "notif:Notification Manager" as notif
+participant "disp:UI View" as disp
+participant "msg:Message Controller" as msg
+participant "sess:Session Database" as sess
+participant "notif:Notification Hub" as notif
 actor "Friend User" as friend
 end box
 activate user

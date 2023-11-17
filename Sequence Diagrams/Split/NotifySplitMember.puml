@@ -1,8 +1,8 @@
 @startuml
 !theme cerulean-outline
 box "Notify Split Member"
-participant "msg:Message Manager" as msg
-participant "notif:Notification Manager" as notif
+participant "msg:Message Controller" as msg
+participant "notif:Notification Hub" as notif
 actor "Split Members" as splitMembers
 end box
 -> msg++ : split_member_ID

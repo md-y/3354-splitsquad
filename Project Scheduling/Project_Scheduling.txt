@@ -1,0 +1,20 @@
+Assumptions: 
+•	Weekends will not be counted
+•	Working hours per day is 8
+•	Schedule will follow agile methodology using a scrum approach with sprints
+•	Effort estimation is measured in story points (SP), which is a measure of effort to fully implement a backlog item scaled relative to complexity, risk, and knowledge
+•	Software team size is 10. Average velocity is 2 SP per sprint, so the average team velocity is 20 SP per sprint
+•	Sprints are 2-week intervals
+Schedule Estimation
+For convenience, the simplified product backlog and task dependencies are shown below. Estimating effort for each task with “Planning Poker”, we estimate a total of 70.75 SP to implement.
+In one sprint, the team can implement 20 SP. To implement the product, we estimate a minimum of 70.75 SP / (20 SP per sprint) = 3.5375 sprints = 1.76875 months
+Accounting for an agreed upon 75% uncertainty for factors such as volatile requirements, testing, holidays, and unexpected hurdles, we adjust our minimum time to be 1.76875 * 1.75 = 3.0953125 months ~ 3 months for flexibility
+
+Because December month has a lot of holidays and vacation leaves, we estimate
+•	Project start date: January 2, 2024
+•	Project end date: April 31, 2024
+•	Project duration: 3 months
+Schedule Overview
+Following the scrum framework, each sprint will consist of sprint planning, daily stand ups, sprint review, and sprint retrospective.
+•	Though it is difficult to provide a detailed picture of the task schedule for each sprint due to the flexible nature of our software process, the product backlog shows a general picture that a “minimum viable product” will be implemented first with higher priority items being done first.
+•	Priority is based on if a task has dependents and the task’s importance

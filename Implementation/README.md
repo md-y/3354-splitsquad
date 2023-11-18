@@ -7,13 +7,11 @@ This is the implementation of our project in Sveltekit using Typescript, Prisma,
 ## How to build
 
 - Must have [Node.js](https://nodejs.org/) with NPM installed
-- Clone the repository, navigate to this directory
-- Run `npm install`
+- Clone the repository, navigate to this directory ("Implementation")
+- Run `npm install` in the terminal
 - Create a Postgres server using [PgAdmin 4](https://www.postgresql.org/download/), or have a Postgres server available for connection
   - Remember the username and password of the admin user, you'll need it later
   - Create a database separate from the default one and remember the name. All of its options can be default.
-- Run `npx prisma migrate dev` to setup the database schema in the Postgres database.
-  - If it asks for a migration name, input any text
 - Create a text file named `.env` at the root of this directory
 - Add the following lines based on the example below:
   - Substitute `USERNAME` with your admin username from PgAdmin 4
@@ -27,7 +25,10 @@ DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/DBNAME?schema=public
 AUTH_SECRET="SOME VERY LONG SECRET VALUE"
 ```
 
+- Run `npx prisma migrate dev` to setup the database schema in the Postgres database.
+  - If it asks for a migration name, input any text
 - Run `npm run build` and `npm run preview` to run the production server
+  - Can also run `npm run dev` for to access the development server quickly
 
 ## Testing
 

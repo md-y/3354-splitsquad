@@ -2,6 +2,8 @@
 
 This is the implementation of our project in Sveltekit using Typescript, Prisma, Postgres, and Bootstrap. Testing is implemented using Vitest and Playwright.
 
+[Demo](https://www.youtube.com/watch?v=_NBJHMUpuRQ)
+
 ## How to build
 
 - Must have [Node.js](https://nodejs.org/) with NPM installed

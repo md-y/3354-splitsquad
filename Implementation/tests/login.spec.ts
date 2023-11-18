@@ -1,3 +1,10 @@
+/*
+	This is the test file for Playwright.
+
+	Learn how to setup Playwright, Sveltekit, etc. here:
+	https://github.com/md-y/3354-splitsquad/tree/master/Implementation#how-to-build
+*/
+
 import { expect } from '@playwright/test';
 import { test } from './test';
 import jwt from 'jsonwebtoken';

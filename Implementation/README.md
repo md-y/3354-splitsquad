@@ -38,6 +38,12 @@ TEST_USERNAME="USERNAME"
 TEST_PASSWORD="PASSWORD"
 ```
 
+The two notable test files are at the following locations:
+
+- Vitest: `src/lib/util/server.test.ts`
+- Playwright: `test/login.spec.ts`
+  - Playwright configuration is in `playwright.config.ts`
+
 ## What is missing from this implementation?
 
 There are a few features not implemented in this project due to development limitations.

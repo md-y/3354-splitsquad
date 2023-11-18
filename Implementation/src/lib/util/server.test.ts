@@ -1,3 +1,10 @@
+/*
+	This is the test file for Vitest.
+
+	Learn how to setup Vitest, Sveltekit, etc. here:
+	https://github.com/md-y/3354-splitsquad/tree/master/Implementation#how-to-build
+*/
+
 import { describe, it, expect } from 'vitest';
 import { generatePasswordHash } from './server';
 

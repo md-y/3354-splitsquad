@@ -11,15 +11,15 @@ This is the implementation of our project in Sveltekit using Typescript, Prisma,
 - Run `npm install`
 - Create a Postgres server using [PgAdmin 4](https://www.postgresql.org/download/), or have a Postgres server available for connection
   - Remember the username and password of the admin user, you'll need it later
-  - Create a database separate from the default one and remember the name. All if its options can be default.
+  - Create a database separate from the default one and remember the name. All of its options can be default.
 - Run `npx prisma migrate dev` to setup the database schema in the Postgres database.
   - If it asks for a migration name, input any text
 - Create a text file named `.env` at the root of this directory
 - Add the following lines based on the example below:
-  - Substitute `USERNAME` with your database username for PgAdmin 4
-  - Substitute `PASSWORD` with your database password for PgAdmin 4
+  - Substitute `USERNAME` with your admin username from PgAdmin 4
+  - Substitute `PASSWORD` with your admin password
   - Substitute `DBNAME` with the name of your database
-  - `DATABASE_URL` doesn't have to be localhost; it just needs to be a connectable Postgres database
+  - Note: `DATABASE_URL` doesn't have to follow this pattern; it just needs to be a connectable Postgres database
   - `AUTH_SECRET` is any long secret value. It will be used to sign session tokens.
 
 ```bash

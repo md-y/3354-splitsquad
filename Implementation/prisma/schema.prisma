@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String           @id @default(uuid())
+  credentials            UserCredentials  @relation(fields: [credentialsId], references: [id])
+  credentialsId          String           @unique
+  username               String
+  friends                User[]           @relation("UserFriends")
+  friendsOf              User[]           @relation("UserFriends")
+  groups                 Group[]          @relation("Groups")
+  splits                 Split[]          @relation("Splits")
+  ownedSplits            Split[]          @relation("OwnedSplits")
+  sentFriendRequests     FriendRequest[]  @relation("SentFriendRequests")
+  receivedFriendRequests FriendRequest[]  @relation("receivedFriendRequests")
+  sentSplitRequests      SplitRequest[]   @relation("SentSplitRequests")
+  receivedSplitRequests  SplitRequest[]   @relation("receivedSplitRequests")
+  sentDirectPayments     DirectPayment[]  @relation("SentDirectPayments")
+  receivedDirectPayments DirectPayment[]  @relation("receivedDirectPayments")
+  paymentAccounts        PaymentAccount[] @relation("PaymentAccounts")
+  notifications          Notification[]   @relation("UserNotifications")
+  readNotificationCount  Int              @default(0)
+  receivedSplitPayments  SplitPayment[]   @relation("ReceivedSplitPayments")
+  sentSplitPayments      SplitPayment[]   @relation("SentSplitPayments")
+}
+
+model UserCredentials {
+  id       String @id @default(uuid())
+  password String
+  salt     String
+  user     User?
+}
+
+model FriendRequest {
+  id          String @id @default(uuid())
+  sender      User   @relation("SentFriendRequests", fields: [senderId], references: [id])
+  recipient   User   @relation("receivedFriendRequests", fields: [recipientId], references: [id])
+  senderId    String
+  recipientId String
+}
+
+model Group {
+  id      String @id @default(uuid())
+  name    String
+  members User[] @relation("Groups")
+}
+
+model Split {
+  id               String         @id @default(uuid())
+  type             SplitType
+  period           Float?
+  total            Float
+  totalPayed       Float
+  name             String
+  description      String         @default("")
+  paymentAccount   PaymentAccount @relation("SplitPaymentAccounts", fields: [paymentAccountId], references: [id])
+  paymentAccountId String
+  members          User[]         @relation("Splits")
+  owner            User           @relation("OwnedSplits", fields: [ownerId], references: [id])
+  ownerId          String
+  requests         SplitRequest[] @relation("AssociatedSplitRequests")
+}
+
+model SplitRequest {
+  id          String  @id @default(uuid())
+  sender      User    @relation("SentSplitRequests", fields: [senderId], references: [id])
+  recipient   User    @relation("receivedSplitRequests", fields: [recipientId], references: [id])
+  amount      Float
+  senderId    String
+  recipientId String
+  split       Split?  @relation("AssociatedSplitRequests", fields: [splitId], references: [id])
+  splitId     String?
+}
+
+model SplitPayment {
+  id          String   @id @default(uuid())
+  sender      User     @relation("SentSplitPayments", fields: [senderId], references: [id])
+  senderId    String
+  recipient   User     @relation("ReceivedSplitPayments", fields: [recipientId], references: [id])
+  recipientId String
+  amount      Float
+  timestamp   DateTime
+}
+
+model DirectPayment {
+  id                 String         @id @default(uuid())
+  amount             Float
+  description        String
+  sender             User           @relation("SentDirectPayments", fields: [senderId], references: [id])
+  recipient          User           @relation("receivedDirectPayments", fields: [recipientId], references: [id])
+  senderId           String
+  recipientId        String
+  senderAccount      PaymentAccount @relation("DirectPaymentWithdrawl", fields: [senderAccountId], references: [id])
+  senderAccountId    String
+  recipientAccount   PaymentAccount @relation("DirectPaymentDeposit", fields: [recipientAccountId], references: [id])
+  recipientAccountId String
+  timestamp          DateTime
+}
+
+model PaymentAccount {
+  id               String          @id @default(uuid())
+  name             String
+  balance          Float
+  owner            User            @relation("PaymentAccounts", fields: [ownerId], references: [id])
+  ownerId          String
+  splits           Split[]         @relation("SplitPaymentAccounts")
+  directWithdrawls DirectPayment[] @relation("DirectPaymentWithdrawl")
+  directDeposits   DirectPayment[] @relation("DirectPaymentDeposit")
+  default          Boolean
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  user      User     @relation("UserNotifications", fields: [userId], references: [id])
+  userId    String
+  timestamp DateTime
+  content   String
+}
+
+enum SplitType {
+  OneTime
+  Recurring
+}

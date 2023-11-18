@@ -4,7 +4,7 @@ This is the implementation of our project in Sveltekit using Typescript, Prisma,
 
 ## How to build
 
-- Must have Node.js and NPM installed
+- Must have [Node.js](https://nodejs.org/) with NPM installed
 - Clone the repository, navigate to this directory
 - Run `npm install`
 - Create a Postgres server using [PgAdmin 4](https://www.postgresql.org/download/), or have a Postgres server available for connection

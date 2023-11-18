@@ -2,6 +2,8 @@
 
 [Implementation Info](https://github.com/md-y/3354-splitsquad/tree/master/Implementation#splitsquad)
 
+[Testing Info](https://github.com/md-y/3354-splitsquad/tree/master/Implementation#testing)
+
 [Demo](https://www.youtube.com/watch?v=_NBJHMUpuRQ)
 
 ## Split Squad :heavy_dollar_sign:
